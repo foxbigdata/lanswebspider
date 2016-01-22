@@ -21,5 +21,95 @@
       <version>3.8.1</version>
       <scope>test</scope>
     </dependency>
+    
+    <dependency>
+		<groupId>us.codecraft</groupId>
+		<artifactId>webmagic-core</artifactId>
+		<version>0.5.2</version>
+	</dependency>
+	<dependency>
+		<groupId>us.codecraft</groupId>
+		<artifactId>webmagic-extension</artifactId>
+		<version>0.5.2</version>
+	</dependency>
+	<dependency>
+		<groupId>org.apache.thrift</groupId>
+		<artifactId>libthrift</artifactId>
+		<version>0.9.3</version>
+	</dependency>
+	
+	<dependency>
+		<groupId>us.codecraft</groupId>
+		<artifactId>webmagic-scripts</artifactId>
+		<version>0.5.2</version>
+	</dependency>
+	<dependency>
+	    <groupId>us.codecraft</groupId>
+	    <artifactId>webmagic-selenium</artifactId>
+	    <version>0.5.2</version>
+	</dependency>
+	<dependency>
+		<groupId>log4j</groupId>
+		<artifactId>log4j</artifactId>
+		<version>1.2.17</version>
+	</dependency>
+	<dependency>
+	    <groupId>org.seleniumhq.selenium</groupId>
+	    <artifactId>selenium-java</artifactId>
+	    <version>2.33.0</version>
+	</dependency>
+	<dependency>
+		<groupId>org.mybatis</groupId>
+		<artifactId>mybatis</artifactId>
+		<version>3.3.0</version>
+	</dependency>
+	<dependency>
+		<groupId>mysql</groupId>
+		<artifactId>mysql-connector-java</artifactId>
+		<version>5.1.38</version>
+	</dependency>
+	
+	<dependency>
+	 <groupId>com.rabbitmq</groupId>
+	 <artifactId>amqp-client</artifactId>
+	 <version>3.5.6</version>
+    </dependency>
+    
   </dependencies>
+  
+  	<build>  
+	    <!--使用Maven编译可执行的jar-->  
+	    <finalName>jppwebspider</finalName>
+	    <plugins>  
+	        <plugin>  
+	            <artifactId>maven-assembly-plugin</artifactId>  
+	            <configuration>  
+	                <appendAssemblyId>false</appendAssemblyId>  
+	                <descriptorRefs>  
+	                    <descriptorRef>jar-with-dependencies</descriptorRef>  
+	                </descriptorRefs>  
+	                <archive>  
+	                    <manifest> 
+	                    	<!--
+	                        <mainClass>com.nutch.webmagic.nutchwebmagic.Main</mainClass>  
+	                        -->
+	                        <mainClass><!-- 这里添加主类名称 --></mainClass>  
+	                    </manifest>  
+	                </archive>  
+	            </configuration>  
+	            <executions>  
+	                <execution>  
+	                    <id>make-assembly</id>  
+	                    <phase>package</phase>  
+	                    <goals>  
+	                        <goal>assembly</goal>  
+	                    </goals>  
+	                </execution>  
+	            </executions>  
+	        </plugin>  
+	    </plugins>  
+	</build>   
+  
+  
+  
 </project>
