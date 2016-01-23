@@ -1,12 +1,14 @@
 package com.webspider.lanswebspider.jppwebspider;
 
 
+import java.sql.Timestamp;
 import java.util.ArrayList;
 
 import org.jsoup.Jsoup;
 import org.jsoup.nodes.Document;
 import org.jsoup.select.Elements;
 
+import com.webspider.lanswebspider.jppwebspider.pojo.StockCodeProduct;
 import com.webspider.lanswebspider.jppwebspider.util.StockcodeUtil;
 
 import us.codecraft.webmagic.Page;
@@ -26,8 +28,10 @@ public class StockcodeListProcessor implements PageProcessor{
 		// TODO Auto-generated method stub
 		System.out.println("This is StockcodelistProcessor main function!");
 		Spider.create(new StockcodeListProcessor()).thread(5).
-		setDownloader(new SeleniumDownloader(driverPath)).addUrl(baseUrl).runAsync();
-
+		//抓取列表页
+		//setDownloader(new SeleniumDownloader(driverPath)).addUrl(baseUrl).runAsync();
+		//抓取item页面
+		setDownloader(new SeleniumDownloader(driverPath)).addUrl(itemUrl).runAsync();
 	}
 
 	public void process(Page page) {
@@ -38,6 +42,10 @@ public class StockcodeListProcessor implements PageProcessor{
 		boolean status;
 		if(util.isListPage(page.getUrl().toString())){
 			status=hubList(page);
+		}else if(util.isItemPage(page.getUrl().toString()))
+		{
+			status=viewPage(page,util);
+			
 		}
 	}
 	
@@ -67,10 +75,46 @@ public class StockcodeListProcessor implements PageProcessor{
 		}
 		System.out.println("viewList.size() = "+ viewList.size());
 		System.out.println("titleList.size() = "+ titlelist.size());
-		
-		
-		
 		return pageBool;
+	}
+	
+	public boolean viewPage(Page page,StockcodeUtil util)
+	{
+		System.out.println("This is StockcodeView page!");
+		boolean bool =false;
+		//System.out.println("html sources code = "+ page.getHtml());
+		Document src=Jsoup.parse(page.getHtml().toString());
+		util.setDocument(src);
+		if(!util.getStockName().isEmpty())
+		{
+			StockCodeProduct product=  new StockCodeProduct();
+			Timestamp current = new Timestamp(System.currentTimeMillis());
+			product.setCreate_time(current);
+			product.setUpdate_time(current);
+			product.setStock_name(util.getStockName());
+			product.setStock_code(util.getStockCode());
+			product.setToday_open(util.getTodayOpen());
+			product.setYesterday_close(util.getYesterdayClose());
+			product.setHighest(util.getHighest());
+			product.setLowest(util.getLowest());
+			product.setLimit_up(util.getLimitUp());
+			product.setLimit_down(util.getLimitDown());
+			product.setChange_rate(util.getChangeRate());
+			product.setRelative_rate(util.getRelativeRate());
+			product.setVolume(util.getVolume());
+			product.setTurnover(util.getTurnover());
+			product.setPe_ratio(util.getPeRatio());
+			product.setPb_ratio(util.getPbRatio());
+			product.setTotal_value(util.getTotalValue());
+			product.setCurrent_value(util.getCurrentValue());
+			product.setCore_data(util.getCoreData());
+			
+			System.out.println("stock_view_info = "+product.toString());
+			
+		}
+		
+		
+		return bool;
 		
 	}
 	
