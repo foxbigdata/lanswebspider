@@ -45,7 +45,6 @@ public class StockcodeListProcessor implements PageProcessor{
 		}else if(util.isItemPage(page.getUrl().toString()))
 		{
 			status=viewPage(page,util);
-			
 		}
 	}
 	
