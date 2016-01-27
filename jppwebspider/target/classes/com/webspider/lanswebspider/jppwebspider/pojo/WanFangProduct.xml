@@ -1,0 +1,35 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper
+  PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN"
+  "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.webspider.lanswebspider.jppwebspider.dao.WanFangProductDao">
+	<select id="getWanFangProduct" parameterType="int" resultType="WanFangProduct">
+	  select * from `wanfang_web_data` where id = #{id}
+	</select>
+	<insert id="addWanFangProduct" parameterType="WanFangProduct">
+        insert into wanfang_web_data(
+        	create_time,
+        	article_title,
+        	article_info,
+        	article_tags,
+        	article_url
+        )values(
+        	#{create_time},
+        	#{article_title},
+        	#{article_info},
+        	#{article_tags},
+        	#{article_url}
+        )  
+    </insert>
+	<update id="updateWanFangProduct" parameterType="WanFangProduct">
+  		update wanfang_web_data set
+    	article_title = #{article_title},
+   	 	article_info = #{article_info},
+    	article_tags = #{article_tags}
+  		where article_url = #{article_url}
+	</update>
+
+	<delete id="deleteWanFangProduct" parameterType="int">
+  		delete from wanfang_web_data where id = #{id}
+	</delete>
+</mapper>
