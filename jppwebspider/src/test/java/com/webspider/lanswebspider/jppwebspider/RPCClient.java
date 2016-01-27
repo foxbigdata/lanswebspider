@@ -15,7 +15,7 @@ import com.rabbitmq.client.ShutdownSignalException;
   
 public class RPCClient {  
   
-    public static final String RPC_QUEUE_NAME = "rpc_queue_two";  
+    public static final String RPC_QUEUE_NAME = "rpc_queue";  
   
     public static void main(String[] args) throws IOException, ShutdownSignalException, ConsumerCancelledException, InterruptedException, TimeoutException {  
   

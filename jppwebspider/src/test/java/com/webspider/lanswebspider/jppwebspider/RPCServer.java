@@ -15,7 +15,7 @@ import com.rabbitmq.client.ShutdownSignalException;
   
 public class RPCServer {  
       
-    public static final String RPC_QUEUE_NAME = "rpc_queue_two";  
+    public static final String RPC_QUEUE_NAME = "rpc_queue";  
       
     public static String sayHello(String name){  
         return "lirui hello " + name ;  
