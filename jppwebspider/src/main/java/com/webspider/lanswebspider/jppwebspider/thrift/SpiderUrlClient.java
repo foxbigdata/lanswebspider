@@ -29,9 +29,9 @@ public class SpiderUrlClient {
 	public static void main(String[] args) throws TException {
 		// TODO Auto-generated method stub
 		//String testCqVipUrl="http://www.cqvip.com/main/search.aspx?k=汽车发动机转速控制";
-		//String testWanFangUrl="http://s.wanfangdata.com.cn/Paper.aspx?q=汽车发动机转速控制&f=top";
+		String testWanFangUrl="http://s.wanfangdata.com.cn/Paper.aspx?q=汽车发动机转速控制&f=top";
 		//http://d.wanfangdata.com.cn/Thesis/Y795191
-		String testWanFangUrl="http://d.wanfangdata.com.cn/Thesis/Y795191";
+		//String testWanFangUrl="http://d.wanfangdata.com.cn/Thesis/Y795191";
 		thriftClient(testWanFangUrl);
 	}
 }

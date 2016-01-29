@@ -5,12 +5,15 @@ import java.util.concurrent.TimeoutException;
 
 import org.apache.thrift.TException;
 
+import us.codecraft.webmagic.Spider;
+
 import com.rabbitmq.client.Channel;
 import com.rabbitmq.client.Connection;
 import com.rabbitmq.client.ConnectionFactory;
 import com.rabbitmq.client.ConsumerCancelledException;
 import com.rabbitmq.client.QueueingConsumer;
 import com.rabbitmq.client.ShutdownSignalException;
+import com.webspider.lanswebspider.jppwebspider.WanFangWebProcessor;
 import com.webspider.lanswebspider.jppwebspider.thrift.SpiderUrlClient;
 
 public class RabbitmqWorker {
@@ -40,9 +43,10 @@ public class RabbitmqWorker {
 			String[] tmp=message.split(" ");
 			for(int mm=1;mm<tmp.length;mm++)
 			{
-				SpiderUrlClient spiderclinet=new SpiderUrlClient();
+				//SpiderUrlClient spiderclinet=new SpiderUrlClient();
 				System.out.println("tmp[mm] = "+tmp[mm]);
-				spiderclinet.thriftClient(tmp[mm]);
+				//spiderclinet.thriftClient(tmp[mm]);
+				Spider.create(new WanFangWebProcessor()).addUrl(tmp[mm]).thread(5).run();
 			}
 			
 			System.out.println("接收消息成功！");
